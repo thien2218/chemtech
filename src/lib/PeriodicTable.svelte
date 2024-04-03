@@ -1,27 +1,43 @@
 <script lang="ts">
 	import { Tooltip } from "bits-ui";
 	import data from "../../public/data/periodic-table-data.json";
+	import { classFormatter } from "../utils";
+	import ElementGroups from "./ElementGroups.svelte";
 	const elements = data.elements;
 
-	const classFormatter = (category: string) => {
-		const className = category.split(" ").join("-");
-		return className;
+	let highlightedCat: string = "all";
+
+	const setHighlightedCat = (group: string) => {
+		highlightedCat = group;
+	};
+
+	$: highlight = (category: string): string => {
+		if (
+			highlightedCat === "all" ||
+			highlightedCat === classFormatter(category)
+		) {
+			return "";
+		}
+
+		return "lowlighted";
 	};
 </script>
 
 <div class="table-grid">
+	<ElementGroups {setHighlightedCat} />
+
 	{#each elements as element}
-		<Tooltip.Root openDelay={0}>
+		<Tooltip.Root openDelay={500}>
 			<Tooltip.Trigger
-				class={`element ${classFormatter(element.category)}`}
+				class={`element ${classFormatter(element.category)} ${highlight(element.category)}`}
 				style={`grid-column: ${element.xpos}; grid-row: ${element.ypos}`}
 			>
 				<div class="element-info">
-					<div class="element-number">{element.number}</div>
-					<div class="element-name">{element.name}</div>
+					<span class="element-number">{element.number}</span>
+					<span class="element-name">{element.name}</span>
 				</div>
-				<div class="element-symbol">{element.symbol}</div>
-				<div class="element-mass">{element.atomic_mass.toFixed(2)}</div>
+				<h1 class="element-symbol">{element.symbol}</h1>
+				<span class="element-mass">{element.atomic_mass.toFixed(2)}</span>
 			</Tooltip.Trigger>
 
 			<Tooltip.Content sideOffset={8}>
