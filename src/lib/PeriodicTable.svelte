@@ -8,7 +8,14 @@
 	let highlightedCat: string = "all";
 
 	const setHighlightedCat = (group: string) => {
-		highlightedCat = group;
+		const formatted = classFormatter(group);
+
+		if (formatted === highlightedCat) {
+			highlightedCat = "all";
+			return;
+		}
+
+		highlightedCat = formatted;
 	};
 
 	$: highlight = (category: string): string => {
@@ -24,7 +31,7 @@
 </script>
 
 <div class="table-grid">
-	<ElementGroups {setHighlightedCat} />
+	<ElementGroups {highlightedCat} {setHighlightedCat} />
 
 	{#each elements as element}
 		<Tooltip.Root openDelay={500}>

@@ -185,6 +185,10 @@ textarea:not([rows]) {
    transition: background-color 0.3s ease;
 }
 
+.element-group-button.active {
+   background-color: rgba(255, 255, 255, 0.2);
+}
+
 .element-group-button:hover {
    background-color: rgba(255, 255, 255, 0.2);
 }
