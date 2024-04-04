@@ -117,9 +117,7 @@ textarea:not([rows]) {
 .lanthanide { --group-color: 230 106 144; }
 .actinide { --group-color: 163 150 224; }
 
-.lowlighted {
-   opacity: 0.5;
-}
+.lowlighted { opacity: 0.5; }
 
 .element {
 	color: #fff;

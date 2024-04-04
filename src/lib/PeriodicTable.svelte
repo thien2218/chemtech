@@ -3,7 +3,8 @@
 	import data from "../data/periodic-table-data.json";
 	import { classFormatter } from "../utils";
 	import ElementGroups from "./ElementGroups.svelte";
-	const elements = data.elements;
+	import Element from "./Element.svelte";
+	const elements = data.elements as ChemElement[];
 
 	let highlightedCat: string = "all";
 
@@ -39,16 +40,11 @@
 				class={`element ${classFormatter(element.category)} ${highlight(element.category)}`}
 				style={`grid-column: ${element.xpos}; grid-row: ${element.ypos}`}
 			>
-				<div class="element-info">
-					<span class="element-number">{element.number}</span>
-					<span class="element-name">{element.name}</span>
-				</div>
-				<h1 class="element-symbol">{element.symbol}</h1>
-				<span class="element-mass">{element.atomic_mass.toFixed(2)}</span>
+				<Element {element} />
 			</Tooltip.Trigger>
 
 			<Tooltip.Content sideOffset={8}>
-				<div class="element-tooltip">
+				<div class="element-tooltip-content">
 					{element.name}
 				</div>
 			</Tooltip.Content>

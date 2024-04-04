@@ -35,3 +35,6 @@
 		</Button.Root>
 	</div>
 {/each}
+
+<style>
+</style>
