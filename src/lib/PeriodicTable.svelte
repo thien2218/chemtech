@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Tooltip } from "bits-ui";
-	import data from "../../public/data/periodic-table-data.json";
+	import data from "../data/periodic-table-data.json";
 	import { classFormatter } from "../utils";
 	import ElementGroups from "./ElementGroups.svelte";
 	const elements = data.elements;
