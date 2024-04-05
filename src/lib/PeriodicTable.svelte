@@ -4,25 +4,14 @@
 	import { classFormatter } from "../utils";
 	import ElementGroups from "./ElementGroups.svelte";
 	import Element from "./Element.svelte";
+	import { selectedGroup } from "../store";
+
 	const elements = data.elements as ChemElement[];
-
-	let highlightedCat: string = "all";
-
-	const setHighlightedCat = (group: string) => {
-		const formatted = classFormatter(group);
-
-		if (formatted === highlightedCat) {
-			highlightedCat = "all";
-			return;
-		}
-
-		highlightedCat = formatted;
-	};
 
 	$: highlight = (category: string): string => {
 		if (
-			highlightedCat === "all" ||
-			highlightedCat === classFormatter(category)
+			$selectedGroup === "all" ||
+			$selectedGroup === classFormatter(category)
 		) {
 			return "";
 		}
@@ -32,13 +21,25 @@
 </script>
 
 <div class="table-grid">
-	<ElementGroups {highlightedCat} {setHighlightedCat} />
+	<ElementGroups />
+
+	<div
+		class="lanthanide outer-group lanthanide-group {highlight('lanthanide')}"
+	>
+		<span class="outer-group-range">57 - 71</span>
+	</div>
+
+	<div class="actinide outer-group actinide-group {highlight('actinide')}">
+		<span class="outer-group-range">89 - 103</span>
+	</div>
 
 	{#each elements as element}
 		<Tooltip.Root openDelay={500}>
 			<Tooltip.Trigger
-				class={`element ${classFormatter(element.category)} ${highlight(element.category)}`}
-				style={`grid-column: ${element.xpos}; grid-row: ${element.ypos}`}
+				class="element {classFormatter(element.category)} {highlight(
+					element.category
+				)}"
+				style="grid-column: {element.xpos}; grid-row: {element.ypos}"
 			>
 				<Element {element} />
 			</Tooltip.Trigger>

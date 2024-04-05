@@ -14,22 +14,19 @@ interface ChemElement {
 	group: number;
 	phase: string;
 	source: string;
-	bohr_model_image: string;
 	bohr_model_3d: string;
 	spectral_img: string;
 	summary: string;
 	symbol: string;
 	xpos: number;
 	ypos: number;
-	wxpos: number;
-	wypos: number;
 	shells: number[];
 	electron_configuration: string;
 	electron_configuration_semantic: string;
 	electron_affinity: number;
-	electronegativity_pauling: number;
+	electronegativity_pauling: number | null;
 	ionization_energies: number[];
-	"cpk-hex": string;
+	cpk_hex: string;
 	image: {
 		title: string;
 		url: string;

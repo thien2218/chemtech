@@ -2,76 +2,93 @@
 *,
 *::before,
 *::after {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 /* Prevent font size inflation */
 html {
-   -moz-text-size-adjust: none;
-   -webkit-text-size-adjust: none;
-   text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
-body, h1, h2, h3, h4, p,
-figure, blockquote, dl, dd {
-   margin-block-end: 0;
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin-block-end: 0;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-   list-style: none;
+ul[role="list"],
+ol[role="list"] {
+	list-style: none;
 }
 
 /* Set core body defaults */
 body {
-   min-height: 100vh;
-   line-height: 1.5;
+	min-height: 100vh;
+	line-height: 1.5;
 }
 
 /* Set shorter line heights on headings and interactive elements */
-h1, h2, h3, h4,
-button, input, label {
-   line-height: 1.1;
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+	line-height: 1.1;
 }
 
 /* Balance text wrapping on headings */
-h1, h2,
-h3, h4 {
-   text-wrap: balance;
+h1,
+h2,
+h3,
+h4 {
+	text-wrap: balance;
 }
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-   text-decoration-skip-ink: auto;
-   color: currentColor;
+	text-decoration-skip-ink: auto;
+	color: currentColor;
 }
 
 /* Make images easier to work with */
 img,
 picture {
-   max-width: 100%;
-   display: block;
+	max-width: 100%;
+	display: block;
 }
 
 /* Inherit fonts for inputs and buttons */
-input, button,
-textarea, select {
-   font-family: inherit;
-   font-size: inherit;
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+	font-size: inherit;
 }
 
 /* Make sure textareas without a rows attribute are not tiny */
 textarea:not([rows]) {
-   min-height: 10em;
+	min-height: 10em;
 }
 
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
-   scroll-margin-block: 5ex;
+	scroll-margin-block: 5ex;
 }
 
 :root {
@@ -88,7 +105,7 @@ textarea:not([rows]) {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-    --group-color: 173 186 191;
+	--group-color: 173 186 191;
 }
 
 /* Styles */
@@ -106,95 +123,160 @@ textarea:not([rows]) {
 	gap: 0.375rem;
 }
 
-.diatomic-nonmetal { --group-color: 158 186 124; }
-.polyatomic-nonmetal { --group-color: 178 192 94; }
-.noble-gas { --group-color: 102 170 197; }
-.alkali-metal { --group-color: 199 76 76; }
-.alkaline-earth-metal { --group-color: 195 158 84; }
-.metalloid { --group-color: 230 125 97; }
-.transition-metal { --group-color: 198 136 121; }
-.post-transition-metal { --group-color: 67 199 199; }
-.lanthanide { --group-color: 230 106 144; }
-.actinide { --group-color: 163 150 224; }
+.diatomic-nonmetal {
+	--group-color: 158 186 124;
+}
+.polyatomic-nonmetal {
+	--group-color: 178 192 94;
+}
+.noble-gas {
+	--group-color: 102 170 197;
+}
+.alkali-metal {
+	--group-color: 199 76 76;
+}
+.alkaline-earth-metal {
+	--group-color: 195 158 84;
+}
+.metalloid {
+	--group-color: 230 125 97;
+}
+.transition-metal {
+	--group-color: 198 136 121;
+}
+.post-transition-metal {
+	--group-color: 67 199 199;
+}
+.lanthanide {
+	--group-color: 230 106 144;
+}
+.actinide {
+	--group-color: 163 150 224;
+}
 
-.lowlighted { opacity: 0.5; }
+.lowlighted {
+	opacity: 0.4;
+}
 
 .element {
 	color: #fff;
 	background-color: rgb(var(--group-color));
-   padding: 0.25rem;
-   font-size: 0.625rem;
-   cursor: pointer;
-   transition: transform 0.5s ease;
-   border-radius: 2px;
-   border: none;
-   text-align: start;
+	padding: 0.25rem;
+	font-size: 0.625rem;
+	cursor: pointer;
+	transition: transform 0.5s ease;
+	border-radius: 2px;
+	border: none;
+	text-align: start;
 }
 
 .element:hover {
-   transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .element-symbol {
-   font-size: 1.75rem;
-   font-weight: 700;
-   line-height: 1.25;
-   text-align: center;
+	font-size: 1.75rem;
+	font-weight: 700;
+	line-height: 1.25;
+	text-align: center;
 }
 
 .element-info {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   gap: 0.25rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.25rem;
 }
 
 .element-name {
-   font-size: 0.5rem;
-   overflow: hidden;
-   white-space: nowrap;
-   text-overflow: ellipsis;
+	font-size: 0.5rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .element-tooltip {
-   padding: 0.375rem 0.75rem;
-   font-size: 0.875rem;
-   background-color: rgba(0, 0, 0, 0.75);
-   color: #fff;
+	padding: 0.375rem 0.75rem;
+	font-size: 0.875rem;
+	background-color: rgba(0, 0, 0, 0.75);
+	color: #fff;
+	border-radius: 0.5rem;
+}
+
+.element-tooltip-content {
+   padding: 0.375rem 0.625rem;
    border-radius: 0.5rem;
+   background: rgba(0, 0, 0, 0.75);
+   font-size: 0.875rem;
+}
+
+.element-groups {
+   grid-column-start: 3;
+   grid-column-end: span 10;
+   grid-row: span 3;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 1rem;
+   padding-inline: 2rem;
+   padding-block: 0.5rem;
 }
 
 .element-group {
-   border-radius: 0.5rem;
-   grid-column-end: span 2;
-   font-weight: 700;
-   display: flex;
-   align-items: center;
+	border-radius: 0.5rem;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+   flex: 1,
 }
 
 .element-group-button {
-   background-color: transparent;
-   border: none;
-   font-size: 0.75rem;
-   text-align: left;
-   padding: 0.5rem 0.5rem;
-   border-radius: 0.5rem;
-   cursor: pointer;
-   transition: background-color 0.3s ease;
+	background-color: transparent;
+	border: none;
+	font-size: 0.875rem;
+	text-align: left;
+	padding: 0.5rem 0.5rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .element-group-button.active {
-   background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.2);
 }
 
 .element-group-button:hover {
-   background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.2);
 }
 
 .element-group-color {
-   flex-shrink: 0;
-   width: 0.75rem;
-   height: 0.75rem;
-   margin-bottom: 0.75rem;
-   background-color: rgb(var(--group-color));
+	flex-shrink: 0;
+	width: 1.25rem;
+	height: 0.875rem;
+	margin-bottom: 0.75rem;
+   border-radius: 0.25rem;
+	background-color: rgb(var(--group-color));
+}
+
+.outer-group {
+	grid-column: 3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(var(--group-color) / 0.2);
+	color: rgb(var(--group-color));
+	border-radius: 0.25rem;
+	padding: 0.25rem;
+}
+
+.outer-group-range {
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.lanthanide-group {
+	grid-row: 6;
+}
+
+.actinide-group {
+	grid-row: 7;
 }
