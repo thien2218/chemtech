@@ -10,9 +10,3 @@ export function setSelectedGroup(group: string) {
 		return classFormatter(formatted);
 	});
 }
-
-export const selectedElement = writable<string | null>(null);
-
-export function setSelectedElement(elementName: string) {
-	selectedElement.set(elementName);
-}

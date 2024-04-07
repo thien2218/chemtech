@@ -4,17 +4,23 @@
 	import { selectedGroup, setSelectedGroup } from "../store";
 </script>
 
-<div class="element-groups">
+<div
+	class="col-start-3 col-span-10 row-span-3 grid grid-cols-4 gap-x-3 gap-y-2 px-7 py-2"
+>
 	{#each ELEMENT_GROUPS as group}
-		<div class="element-group">
+		<div class="font-bold">
 			<Button.Root
-				class="element-group-button {$selectedGroup ===
+				class="border-none text-sm p-1.5 rounded-lg cursor-pointer transition-[background-color] duration-300 hover:bg-white/20 {$selectedGroup ===
 				classFormatter(group)
 					? 'active'
 					: ''}"
 				on:click={() => setSelectedGroup(group)}
 			>
-				<div class="element-group-color {classFormatter(group)}"></div>
+				<div
+					class="w-5 h-3.5 mb-3 rounded-[0.25rem] bg-element-group {classFormatter(
+						group
+					)}"
+				></div>
 				{group}
 			</Button.Root>
 		</div>

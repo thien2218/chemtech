@@ -16,36 +16,44 @@
 			return "";
 		}
 
-		return "lowlighted";
+		return "opacity-20";
 	};
 </script>
 
-<div class="table-grid">
+<div
+	class="grid grid-cols-[repeat(18,minmax(4rem,1fr))] grid-rows-[repeat(10,minmax(4rem,1fr))] gap-1"
+>
 	<ElementGroups />
 
 	<div
-		class="lanthanide outer-group lanthanide-group {highlight('lanthanide')}"
+		class="lanthanide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-6 row-end-6 {highlight(
+			'lanthanide'
+		)}"
 	>
-		<span class="outer-group-range">57 - 71</span>
+		<span class="text-xs font-bold">57 - 71</span>
 	</div>
 
-	<div class="actinide outer-group actinide-group {highlight('actinide')}">
-		<span class="outer-group-range">89 - 103</span>
+	<div
+		class="actinide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-7 row-end-7 {highlight(
+			'actinide'
+		)}"
+	>
+		<span class="text-xs font-bold">89 - 103</span>
 	</div>
 
 	{#each elements as element}
 		<Tooltip.Root openDelay={500}>
 			<Tooltip.Trigger
-				class="element {classFormatter(element.category)} {highlight(
+				class="text-white bg-element-group p-1 text-xs cursor-pointer rounded-[0.25rem] text-start hover:scale-110 {classFormatter(
 					element.category
-				)}"
-				style="grid-column: {element.xpos}; grid-row: {element.ypos}"
+				)} {highlight(element.category)}"
+				style="grid-column: {element.xpos}; grid-row: {element.ypos}; transition: transform 0.4s ease, opacity 0.2s ease;"
 			>
 				<Element {element} />
 			</Tooltip.Trigger>
 
 			<Tooltip.Content sideOffset={8}>
-				<div class="element-tooltip-content">
+				<div class="py-1.5 px-2.5 text-sm bg-gray-900 rounded-lg">
 					{element.name}
 				</div>
 			</Tooltip.Content>
