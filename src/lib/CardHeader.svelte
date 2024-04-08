@@ -16,7 +16,7 @@
 	/>
 
 	<div
-		class="relative top-0 h-full w-full bg-black/40 z-10 flex flex-col justify-between text-white"
+		class="relative top-0 h-full w-full bg-black/40 z-10 flex flex-col justify-between"
 	>
 		<div class="flex items-center justify-between p-3">
 			<a

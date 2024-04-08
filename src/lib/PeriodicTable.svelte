@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { Tooltip } from "bits-ui";
+	import { Dialog, Tooltip } from "bits-ui";
 	import data from "../assets/data/periodic-table-data.json";
 	import { classFormatter } from "../utils";
 	import ElementGroups from "./ElementGroups.svelte";
+	import OuterGroupsSpan from "./OuterGroupsSpan.svelte";
 	import Element from "./Element.svelte";
-	import { selectedGroup } from "../store";
+	import { selectedGroup, curElement } from "../store";
 	import type { ChemElement } from "../types";
+	import ElementCard from "./ElementCard.svelte";
+	import { fade } from "svelte/transition";
 
 	const elements = data.elements as ChemElement[];
 
@@ -19,6 +22,12 @@
 
 		return "opacity-20";
 	};
+
+	const onCloseDialog = (open: boolean) => {
+		if (!open) {
+			curElement.set(null);
+		}
+	};
 </script>
 
 <div
@@ -26,31 +35,29 @@
 >
 	<ElementGroups />
 
-	<div
-		class="lanthanide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-6 row-end-6 {highlight(
-			'lanthanide'
-		)}"
-	>
-		<span class="text-xs font-bold">57 - 71</span>
-	</div>
+	<OuterGroupsSpan {highlight} />
 
-	<div
-		class="actinide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-7 row-end-7 {highlight(
-			'actinide'
-		)}"
-	>
-		<span class="text-xs font-bold">89 - 103</span>
-	</div>
+	<Dialog.Root onOpenChange={onCloseDialog}>
+		{#each elements as element}
+			<Tooltip.Root openDelay={500}>
+				<Element {element} {highlight} />
 
-	{#each elements as element}
-		<Tooltip.Root openDelay={500}>
-			<Element {element} {highlight} />
+				<Tooltip.Content sideOffset={8}>
+					<div class="py-1.5 px-2.5 text-sm bg-gray-900/90 rounded-lg">
+						{element.name}
+					</div>
+				</Tooltip.Content>
+			</Tooltip.Root>
+		{/each}
 
-			<Tooltip.Content sideOffset={8}>
-				<div class="py-1.5 px-2.5 text-sm bg-gray-900/90 rounded-lg">
-					{element.name}
-				</div>
-			</Tooltip.Content>
-		</Tooltip.Root>
-	{/each}
+		<Dialog.Portal>
+			<Dialog.Overlay
+				transition={fade}
+				transitionConfig={{ duration: 200 }}
+				class="fixed inset-0 z-50 bg-black/80"
+			/>
+
+			<ElementCard />
+		</Dialog.Portal>
+	</Dialog.Root>
 </div>
