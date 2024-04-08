@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { Tooltip } from "bits-ui";
-	import data from "../data/periodic-table-data.json";
+	import data from "../assets/data/periodic-table-data.json";
 	import { classFormatter } from "../utils";
 	import ElementGroups from "./ElementGroups.svelte";
 	import Element from "./Element.svelte";
 	import { selectedGroup } from "../store";
+	import type { ChemElement } from "../types";
 
 	const elements = data.elements as ChemElement[];
 
@@ -43,17 +44,10 @@
 
 	{#each elements as element}
 		<Tooltip.Root openDelay={500}>
-			<Tooltip.Trigger
-				class="text-white bg-element-group p-1 text-xs cursor-pointer rounded-[0.25rem] text-start hover:scale-110 {classFormatter(
-					element.category
-				)} {highlight(element.category)}"
-				style="grid-column: {element.xpos}; grid-row: {element.ypos}; transition: transform 0.4s ease, opacity 0.2s ease;"
-			>
-				<Element {element} />
-			</Tooltip.Trigger>
+			<Element {element} {highlight} />
 
 			<Tooltip.Content sideOffset={8}>
-				<div class="py-1.5 px-2.5 text-sm bg-gray-900 rounded-lg">
+				<div class="py-1.5 px-2.5 text-sm bg-gray-900/90 rounded-lg">
 					{element.name}
 				</div>
 			</Tooltip.Content>

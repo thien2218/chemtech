@@ -1,4 +1,8 @@
-interface ChemElement {
+import lookup from "./assets/data/periodic-table-lookup.json";
+
+export type ElementName = keyof Omit<typeof lookup, "lookup">;
+
+export interface ChemElement {
 	name: string;
 	appearance: string;
 	atomic_mass: number;
