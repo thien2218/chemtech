@@ -9,6 +9,7 @@
    import { curElement } from "../store";
    import { onDestroy } from "svelte";
    import Scene from "./Scene.svelte";
+   import ElectronDistribution from "./ElectronDistribution.svelte";
 
    let element: ChemElement;
 
@@ -22,7 +23,7 @@
 <Dialog.Content
    transition={fade}
    transitionConfig={{ duration: 200 }}
-   class="fixed flex left-1/2 top-0 z-50 -translate-x-1/2 bg-background shadow-popover outline-none text-white w-[90%] max-w-[64rem]"
+   class="fixed flex gap-4 left-1/2 top-0 z-50 -translate-x-1/2 bg-background shadow-popover outline-none text-white w-[90%] max-w-[70rem] h-screen"
 >
    <div class="flex-1 max-h-screen overflow-y-auto">
       <CardHeader {element} />
@@ -32,11 +33,17 @@
       {/each}
    </div>
 
-   <div class="flex-1 h-[42rem]">
-      <div class="w-full h-1/2 bg-gray-950">
-         <Canvas>
-            <Scene model={element.bohr_model_3d} />
-         </Canvas>
+   <div class="flex-1 h-full overflow-y-auto">
+      <div class="h-full min-h-[44rem]">
+         <div class="w-full h-1/2 bg-gray-950">
+            <Canvas>
+               <Scene model={element.bohr_model_3d} />
+            </Canvas>
+         </div>
+
+         <div class="w-full h-1/2 bg-gray-900 p-6">
+            <ElectronDistribution />
+         </div>
       </div>
    </div>
 </Dialog.Content>
