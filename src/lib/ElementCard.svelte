@@ -4,7 +4,7 @@
    import { fade } from "svelte/transition";
    import type { ChemElement } from "../types";
    import CardHeader from "./CardHeader.svelte";
-   import mapper from "../assets/data/element-data-map";
+   import { mapper } from "../assets/data/element-data";
    import ElementData from "./ElementData.svelte";
    import { curElement } from "../store";
    import { onDestroy } from "svelte";

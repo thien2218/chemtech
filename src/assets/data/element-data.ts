@@ -1,6 +1,6 @@
 import type { ElementField } from "../../types";
 
-const mapper: {
+export const mapper: {
    title: string;
    fields: ElementField[];
    transform?: (value: any) => string;
@@ -90,4 +90,36 @@ const mapper: {
    }
 ];
 
-export default mapper;
+export const subshells: {
+   name: "s" | "p" | "d" | "f";
+   shells: number[];
+   mt: string;
+   color: string;
+}[] = [
+   {
+      name: "s",
+      shells: [7, 6, 5, 4, 3, 2, 1],
+      mt: "0.75rem",
+      color: "#004c52"
+   },
+   {
+      name: "p",
+      shells: [7, 6, 5, 4, 3, 2],
+      mt: "0",
+      color: "#3b5800"
+   },
+   {
+      name: "d",
+      shells: [6, 5, 4, 3],
+      mt: "0.25rem",
+      color: "#5f003f"
+   },
+   {
+      name: "f",
+      shells: [5, 4],
+      mt: "0.5rem",
+      color: "#0020a8"
+   }
+];
+
+export const subshellMap = { s: [1, 0], p: [3, 2], d: [5, 8], f: [7, 18] };

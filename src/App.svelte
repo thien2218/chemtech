@@ -1,9 +1,11 @@
 <script lang="ts">
-	import PeriodicTable from "./lib/PeriodicTable.svelte";
+   import PeriodicTable from "./lib/PeriodicTable.svelte";
+   import SearchBar from "./lib/SearchBar.svelte";
 </script>
 
 <main>
-	<div class="container">
-		<PeriodicTable />
-	</div>
+   <div class="container">
+      <SearchBar />
+      <PeriodicTable />
+   </div>
 </main>

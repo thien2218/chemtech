@@ -1,67 +1,59 @@
 <script lang="ts">
    import { curElement } from "../store";
    import ElectronSpinIcon from "../assets/icons/ElectronSpinIcon.svelte";
+   import { subshellMap, subshells } from "../assets/data/element-data";
+   import { onMount } from "svelte";
 
-   const blocks: {
-      name: "s" | "p" | "d" | "f";
-      shells: number[];
-      mt: string;
-      color: string;
-   }[] = [
-      {
-         name: "s",
-         shells: [7, 6, 5, 4, 3, 2, 1],
-         mt: "0.75rem",
-         color: "#004c52"
-      },
-      {
-         name: "p",
-         shells: [7, 6, 5, 4, 3, 2],
-         mt: "0",
-         color: "#3b5800"
-      },
-      {
-         name: "d",
-         shells: [6, 5, 4, 3],
-         mt: "0.25rem",
-         color: "#5f003f"
-      },
-      {
-         name: "f",
-         shells: [5, 4],
-         mt: "0.5rem",
-         color: "#0020a8"
+   let curCell: string;
+
+   const getLastCell = () => {
+      if ($curElement) {
+         const elConfigList = $curElement.electron_configuration.split(" ");
+         const lastElConfig = elConfigList[elConfigList.length - 1];
+         const cell =
+            (parseInt(lastElConfig.substring(2)) - 1) %
+            subshellMap[$curElement.block][0];
+
+         curCell = lastElConfig.substring(0, 2) + cell;
       }
-   ];
+   };
 
-   const blockMap = { s: 0, p: 2, d: 8, f: 18 };
+   const setCurCell = (cell: string) => {
+      curCell = cell;
+   };
+
+   onMount(getLastCell);
 </script>
 
 <div class="flex gap-4 justify-center">
-   {#each blocks as { name, shells, mt, color }, idx (name)}
+   {#each subshells as { name, shells, mt, color } (name)}
       <div style="margin-top: {mt};">
          {#each shells as shell (shell)}
             <div class="mb-1 flex items-center gap-1">
                <span class="font-sm w-5">{shell}{name}</span>
 
-               {#each Array(1 + idx * 2) as _, i}
-                  <div
-                     class="w-[18px] h-6 flex items-center justify-center"
-                     style="background-color: {color};"
-                  >
-                     {#if $curElement}
+               {#each Array(subshellMap[name][0]) as _, cell}
+                  {#if $curElement}
+                     <button
+                        class="w-[18px] h-6 flex items-center justify-center {`${shell}${name}${cell}` ===
+                        curCell
+                           ? 'outline outline-white outline-2'
+                           : ''}"
+                        style="background-color: {color};"
+                        on:click={() => setCurCell(`${shell}${name}${cell}`)}
+                     >
                         <div class="w-1.5 h-3 flex items-center">
-                           {#if i + 1 + blockMap[name] <= $curElement.shells[shell - 1]}
+                           {#if cell + 1 + subshellMap[name][1] <= $curElement.shells[shell - 1]}
                               <ElectronSpinIcon />
                            {/if}
                         </div>
                         <div class="w-1.5 h-3 rotate-180 flex items-center">
-                           {#if 1 + idx * 2 + i + 1 + blockMap[name] <= $curElement.shells[shell - 1]}
+                           {#if subshellMap[name][0] + cell + 1 + subshellMap[name][1] <= $curElement.shells[shell - 1]}
                               <ElectronSpinIcon />
                            {/if}
                         </div>
-                     {/if}
-                  </div>
+                     </button>
+                  {/if}
                {/each}
             </div>
          {/each}
@@ -69,10 +61,23 @@
    {/each}
 </div>
 
-{#if $curElement}
+{#if $curElement && curCell}
    <div class="my-4">
       <p>
-         block: {$curElement.block}
+         Block: {$curElement.block}
+      </p>
+      <p>
+         n: {curCell.substring(0, 1)}
+      </p>
+      <p>
+         l: {subshells.findIndex(
+            (subshell) => subshell.name === curCell.substring(1, 2)
+         )}
+      </p>
+      <p>
+         m: {parseInt(curCell.substring(2)) -
+            // @ts-ignore
+            parseInt(subshellMap[curCell.substring(1, 2)][0] / 2)}
       </p>
    </div>
 {/if}
