@@ -12,12 +12,12 @@
 
    const elements = data.elements as ChemElement[];
 
-   $: highlight = (category: string): string => {
-      if ($curGroup === "all" || $curGroup === classFormatter(category)) {
-         return "";
+   $: isInGroup = (group: string): boolean => {
+      if ($curGroup === "all" || $curGroup === classFormatter(group)) {
+         return true;
       }
 
-      return "opacity-20";
+      return false;
    };
 
    const onCloseDialog = (open: boolean) => {
@@ -32,12 +32,12 @@
 >
    <ElementGroups />
 
-   <OuterGroupsSpan {highlight} />
+   <OuterGroupsSpan {isInGroup} />
 
    <Dialog.Root onOpenChange={onCloseDialog}>
       {#each elements as element}
          <Tooltip.Root openDelay={500}>
-            <Element {element} {highlight} />
+            <Element {element} {isInGroup} />
 
             <Tooltip.Content sideOffset={8}>
                <div class="py-1.5 px-2.5 text-sm bg-gray-900/90 rounded-lg">

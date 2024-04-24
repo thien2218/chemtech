@@ -123,3 +123,13 @@ export const subshells: {
 ];
 
 export const subshellMap = { s: [1, 0], p: [3, 2], d: [5, 8], f: [7, 18] };
+
+export const searchableProps = [
+   "name",
+   "symbol",
+   "number",
+   "electron_configuration",
+   "electron_configuration_semantic",
+   "discovered_by",
+   "named_by"
+] as const;

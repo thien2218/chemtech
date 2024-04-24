@@ -1,19 +1,23 @@
 <script lang="ts">
-	export let highlight: (category: string) => string;
+   export let isInGroup: (category: string) => boolean;
 </script>
 
 <div
-	class="lanthanide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-6 row-end-6 {highlight(
-		'lanthanide'
-	)}"
+   class="lanthanide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-6 row-end-6 {isInGroup(
+      'lanthanide'
+   )
+      ? ''
+      : 'opacity-20'}"
 >
-	<span class="text-xs font-bold">57 - 71</span>
+   <span class="text-xs font-bold">57 - 71</span>
 </div>
 
 <div
-	class="actinide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-7 row-end-7 {highlight(
-		'actinide'
-	)}"
+   class="actinide col-start-3 bg-element-group/20 text-element-group flex justify-center items-center rounded-[0.25rem] row-start-7 row-end-7 {isInGroup(
+      'actinide'
+   )
+      ? ''
+      : 'opacity-20'}"
 >
-	<span class="text-xs font-bold">89 - 103</span>
+   <span class="text-xs font-bold">89 - 103</span>
 </div>

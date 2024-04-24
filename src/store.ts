@@ -13,3 +13,5 @@ export function setCurGroup(group: string) {
 }
 
 export const curElement = writable<ChemElement | null>(null);
+
+export const query = writable<string>("");
